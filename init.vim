@@ -6,38 +6,81 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
+Plug 'tmsvg/pear-tree'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
-"设置主题
+"=== theme
 set background=dark
 colorscheme solarized8
-"日常使用
+"=== /theme
+
+"=== daily
 set number
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set ignorecase
 set infercase
-" === key-binding
+"=== /daily
+
+"=== key-binding
 nnoremap <Space> <Nop>
 let mapleader=" "
+imap <C-h> <BS>
 inoremap jj <Esc>l
 nnoremap <leader>s :w
 nnoremap <C-h> <C-w><C-h>
 nnoremap <C-j> <C-w><C-j>
 nnoremap <C-k> <C-w><C-k>
 nnoremap <C-l> <C-w><C-l>
-inoremap ' ''<Esc>i
-inoremap " ""<Esc>i
-inoremap ( ()<Esc>i
-inoremap [ []<Esc>i
-inoremap { {<Cr>}<Esc>O
 nmap ss <Plug>(easymotion-s2)
-" === end key-binding
+"=== /key-binding
 
+"=== pear-tree
+" Default rules for matching:
+let g:pear_tree_pairs = {
+            \ '(': {'closer': ')'},
+            \ '[': {'closer': ']'},
+            \ '{': {'closer': '}'},
+            \ "'": {'closer': "'"},
+            \ '"': {'closer': '"'}
+            \ }
+" See pear-tree/after/ftplugin/ for filetype-specific matching rules
 
-" === coc.nvim
+" Pear Tree is enabled for all filetypes by default:
+let g:pear_tree_ft_disabled = []
+
+" Pair expansion is dot-repeatable by default:
+let g:pear_tree_repeatable_expand = 1
+
+" Smart pairs are disabled by default:
+let g:pear_tree_smart_openers = 1
+let g:pear_tree_smart_closers = 1
+let g:pear_tree_smart_backspace = 1
+
+" If enabled, smart pair functions timeout after 60ms:
+let g:pear_tree_timeout = 60
+
+" Automatically map <BS>, <CR>, and <Esc>
+let g:pear_tree_map_special_keys = 1
+
+" Default mappings:
+imap <BS> <Plug>(PearTreeBackspace)
+imap <CR> <Plug>(PearTreeExpand)
+imap <Esc> <Plug>(PearTreeFinishExpansion)
+" Pear Tree also makes <Plug> mappings for each opening and closing string.
+"     :help <Plug>(PearTreeOpener)
+"     :help <Plug>(PearTreeCloser)
+
+" Not mapped by default:
+" <Plug>(PearTreeSpace)
+" <Plug>(PearTreeJump)
+" <Plug>(PearTreeExpandOne)
+" <Plug>(PearTreeJNR)
+"=== /prea-tree
+
+"=== coc.nvim
 let	g:coc_global_extensions = [
 		\ "coc-vimlsp",
 		\ "coc-marketplace",
@@ -74,4 +117,4 @@ function! s:show_documentation()
 endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
-" === end coc.vim
+"=== /coc.vim

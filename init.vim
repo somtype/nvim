@@ -86,7 +86,12 @@ let	g:coc_global_extensions = [
 		\ "coc-marketplace",
 		\ "coc-json",
 		\ "coc-clangd",
+<<<<<<< HEAD
 		\ "coc-docker"
+=======
+		\ "coc-html",
+		\ "coc-python"
+>>>>>>> af93c6a699f57ad23df72aae00255fa8f5dc3df0
 		\]
 
 inoremap <silent><expr> <TAB>

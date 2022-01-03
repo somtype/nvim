@@ -82,8 +82,8 @@ imap <Esc> <Plug>(PearTreeFinishExpansion)
 
 "=== coc.nvim
 let	g:coc_global_extensions = [
-		\ "coc-vimlsp",
 		\ "coc-marketplace",
+		\ "coc-vimlsp",
 		\ "coc-json",
 		\ "coc-clangd",
 		\ "coc-docker",
